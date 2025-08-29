@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personalizza Etichette Adesive - Negozio</title>
+    <title>Personalizza Etichette Scolastiche</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Galindo&family=Laika&family=Lobster&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
@@ -112,63 +112,6 @@
             justify-content: center;
             width: 100%;
             height: 100%;
-        }
-        
-        .label-text {
-            font-weight: bold;
-            color: #111827;
-            text-align: center;
-            width: 100%;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            padding: 0 5px;
-        }
-        
-        .multi-line-label {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100%;
-            padding: 5px;
-        }
-        
-        .multi-line-label .line {
-            width: 100%;
-            text-align: center;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            line-height: 1.2;
-        }
-        
-        .font-size-controls {
-            display: flex;
-            gap: 5px;
-            margin-top: 10px;
-        }
-        
-        .font-size-btn {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: var(--primary);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            border: none;
-            font-weight: bold;
-            font-size: 18px;
-        }
-        
-        .size-info {
-            text-align: center;
-            font-size: 0.8rem;
-            color: #666;
-            margin-top: 8px;
         }
         
         .customization-section {
@@ -290,21 +233,6 @@
             font-size: 0.8rem;
             color: var(--dark);
             margin-top: 4px;
-        }
-        
-        .text-inputs {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 8px;
-            margin-top: 8px;
-        }
-        
-        .text-input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 0.9rem;
         }
         
         .action-buttons {
@@ -455,29 +383,138 @@
             font-size: 0.8rem;
         }
         
-        .name-input-container {
+        .preview-controls {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 10px;
-            margin-bottom: 20px;
+            margin-top: 15px;
         }
         
-        .name-input {
+        /* Stili per l'input direttamente sull'anteprima */
+        .editable-label-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: 100%;
-            max-width: 300px;
-            padding: 12px 15px;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 1rem;
-            text-align: center;
-            transition: all 0.3s ease;
+            height: 100%;
+            padding: 5px;
         }
         
-        .name-input:focus {
+        .editable-label {
+            width: 100%;
+            background: transparent;
+            border: none;
+            text-align: center;
+            font-weight: bold;
+            color: inherit;
+            font-family: inherit;
+            font-size: inherit;
             outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(78, 122, 230, 0.2);
+            resize: none;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+            line-height: 1.2;
+        }
+        
+        .font-size-controls {
+            display: flex;
+            gap: 5px;
+            margin-top: 10px;
+        }
+        
+        .font-size-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .size-info {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 8px;
+        }
+        
+        .auto-adjust-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .auto-adjust-label {
+            font-size: 0.9rem;
+        }
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background-color: var(--primary);
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        
+        .text-length-indicator {
+            font-size: 0.8rem;
+            text-align: center;
+            margin-top: 4px;
+            color: #6b7280;
+        }
+        
+        .text-too-long {
+            color: #ef4444;
+            font-weight: bold;
         }
         
         .font-select-under-preview {
@@ -490,12 +527,13 @@
             text-align: center;
         }
         
-        .preview-controls {
+        .centering-fix {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 10px;
-            margin-top: 15px;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            text-align: center;
         }
     </style>
 </head>
@@ -504,7 +542,7 @@
         <div class="container">
             <div class="logo-container">
                 <i class="fas fa-tags logo"></i>
-                <h1>Personalizza le tue Etichette Adesive</h1>
+                <h1>Personalizza le tue Etichette Scolastiche</h1>
             </div>
             <p class="subtitle">Crea etichette uniche per identificare facilmente pennarelli, quaderni, matite e tutto l'occorrente scolastico</p>
         </div>
@@ -513,13 +551,9 @@
     <div class="preview-section">
         <div class="container">
             <div class="preview-container">
-                <div class="name-input-container">
-                    <input type="text" class="name-input" id="childName" placeholder="Scrivi il nome qui" value="Marco Rossi">
-                </div>
-                
                 <div class="label-preview" id="labelPreview" style="width: 230px; height: 55px;">
-                    <div class="label-content">
-                        <div class="label-text" id="labelText">Marco Rossi</div>
+                    <div class="editable-label-container">
+                        <textarea class="editable-label" id="editableLabel" placeholder="Scrivi qui il nome" rows="1">Marco Rossi</textarea>
                     </div>
                 </div>
                 
@@ -536,11 +570,20 @@
                         <button class="font-size-btn" id="fontSizeDown">-</button>
                         <button class="font-size-btn" id="fontSizeUp">+</button>
                     </div>
+                    
+                    <div class="auto-adjust-container">
+                        <span class="auto-adjust-label">Auto-ridimensiona</span>
+                        <label class="switch">
+                            <input type="checkbox" id="autoAdjustToggle" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
                 </div>
                 
                 <div class="size-info">
                     <p id="sizeInfo">Dimensioni reali: 46×11 mm (scala 5:1)</p>
                     <p id="quantityInfo">Quantità: 84 etichette per confezione</p>
+                    <p class="text-length-indicator" id="textLengthIndicator">0/20 caratteri</p>
                 </div>
             </div>
         </div>
@@ -563,16 +606,6 @@
                         <div class="dimensions">64×30 mm</div>
                         <div class="quantity">27 pz/confezione</div>
                     </div>
-                </div>
-            </div>
-            
-            <div class="form-group" id="multiLineInput" style="display: none;">
-                <label for="line1">Testo etichetta (max 4 righe)</label>
-                <div class="text-inputs">
-                    <input type="text" id="line1" class="text-input" placeholder="Riga 1" value="Marco Rossi">
-                    <input type="text" id="line2" class="text-input" placeholder="Riga 2 (opzionale)">
-                    <input type="text" id="line3" class="text-input" placeholder="Riga 3 (opzionale)">
-                    <input type="text" id="line4" class="text-input" placeholder="Riga 4 (opzionale)">
                 </div>
             </div>
             
@@ -631,10 +664,14 @@
                 <button class="btn btn-primary" id="savePng">
                     <i class="fas fa-download"></i> Salva PNG
                 </button>
+                <button class="btn whatsapp-direct" id="whatsappDirect">
+                    <i class="fab fa-whatsapp"></i> Invia via WhatsApp
+                </button>
             </div>
             
             <div class="btn-explanation">
                 <p><strong>Salva PNG</strong>: Scarica l'etichetta sul tuo dispositivo</p>
+                <p><strong>Invia via WhatsApp</strong>: Apri direttamente WhatsApp per inviare l'immagine</p>
             </div>
             
             <div class="save-contact-section">
@@ -677,17 +714,12 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Elementi DOM
-            const childNameInput = document.getElementById('childName');
-            const line1Input = document.getElementById('line1');
-            const line2Input = document.getElementById('line2');
-            const line3Input = document.getElementById('line3');
-            const line4Input = document.getElementById('line4');
+            const editableLabel = document.getElementById('editableLabel');
             const fontSelect = document.getElementById('fontSelect');
             const colorOptions = document.querySelectorAll('.color-option[data-color]');
             const textColorOptions = document.querySelectorAll('.color-option[data-text-color]');
             const materialOptions = document.querySelectorAll('.material-option');
             const sizeOptions = document.querySelectorAll('.size-option');
-            const multiLineInput = document.getElementById('multiLineInput');
             const labelPreview = document.getElementById('labelPreview');
             const sizeInfo = document.getElementById('sizeInfo');
             const quantityInfo = document.getElementById('quantityInfo');
@@ -695,19 +727,53 @@
             const saveContactBtn = document.getElementById('saveContact');
             const fontSizeUp = document.getElementById('fontSizeUp');
             const fontSizeDown = document.getElementById('fontSizeDown');
+            const autoAdjustToggle = document.getElementById('autoAdjustToggle');
+            const textLengthIndicator = document.getElementById('textLengthIndicator');
+            const whatsappDirectBtn = document.getElementById('whatsappDirect');
             
             // Variabili globali
             let currentFontSize = 20;
             let currentSize = 'small';
-            let labelText = document.getElementById('labelText');
-            let isAutoAdjusting = false;
+            let isAutoAdjusting = true;
+            
+            // Inizializza l'applicazione
+            function initApp() {
+                // Imposta i listener per gli input di testo
+                setupTextInputListeners();
+                
+                // Aggiorna l'anteprima iniziale
+                updateSize();
+                updatePreview();
+            }
+            
+            // Imposta i listener per gli input di testo
+            function setupTextInputListeners() {
+                // Listener per l'input del nome
+                editableLabel.addEventListener('input', function() {
+                    updateTextLengthIndicator();
+                    updatePreview();
+                    
+                    // Auto-ridimensiona l'altezza della textarea
+                    this.style.height = 'auto';
+                    this.style.height = (this.scrollHeight) + 'px';
+                });
+            }
+            
+            // Aggiorna l'indicatore della lunghezza del testo
+            function updateTextLengthIndicator() {
+                const length = editableLabel.value.length;
+                const maxLength = currentSize === 'small' ? 20 : 80;
+                textLengthIndicator.textContent = `${length}/${maxLength} caratteri`;
+                
+                if (length > maxLength) {
+                    textLengthIndicator.classList.add('text-too-long');
+                } else {
+                    textLengthIndicator.classList.remove('text-too-long');
+                }
+            }
             
             // Aggiorna l'anteprima quando cambiano i valori
-            childNameInput.addEventListener('input', updatePreview);
-            line1Input.addEventListener('input', updatePreview);
-            line2Input.addEventListener('input', updatePreview);
-            line3Input.addEventListener('input', updatePreview);
-            line4Input.addEventListener('input', updatePreview);
+            editableLabel.addEventListener('input', updatePreview);
             fontSelect.addEventListener('change', updatePreview);
             
             // Gestione colori
@@ -750,14 +816,24 @@
             // Gestione dimensione font
             fontSizeUp.addEventListener('click', function() {
                 isAutoAdjusting = false;
+                autoAdjustToggle.checked = false;
                 currentFontSize += 2;
                 updatePreview();
             });
             
             fontSizeDown.addEventListener('click', function() {
                 isAutoAdjusting = false;
+                autoAdjustToggle.checked = false;
                 currentFontSize = Math.max(10, currentFontSize - 2);
                 updatePreview();
+            });
+            
+            // Gestione toggle auto-adjust
+            autoAdjustToggle.addEventListener('change', function() {
+                isAutoAdjusting = this.checked;
+                if (isAutoAdjusting) {
+                    updatePreview();
+                }
             });
             
             // Salva contatto in rubrica
@@ -785,6 +861,33 @@
                 alert("Contatto salvato! Apri il file per aggiungere il numero alla tua rubrica.");
             });
             
+            // Invia direttamente via WhatsApp
+            whatsappDirectBtn.addEventListener('click', function() {
+                html2canvas(labelPreview, {
+                    scale: 3,
+                    backgroundColor: null
+                }).then(canvas => {
+                    canvas.toBlob(function(blob) {
+                        const file = new File([blob], "etichetta.png", { type: "image/png" });
+                        const url = URL.createObjectURL(file);
+                        
+                        // Crea un link temporaneo per il download
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = "etichetta.png";
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        
+                        // Apri WhatsApp
+                        const phoneNumber = "393500487658";
+                        const message = "Ciao, vorrei ordinare queste etichette personalizzate!";
+                        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                        window.open(whatsappUrl, '_blank');
+                    });
+                });
+            });
+            
             // Funzione per aggiornare le dimensioni
             function updateSize() {
                 const selectedSize = document.querySelector('.size-option.active');
@@ -802,81 +905,59 @@
                     sizeInfo.textContent = `Dimensioni reali: ${dimensions} (scala 5:1)`;
                     quantityInfo.textContent = `Quantità: ${quantity} etichette per confezione`;
                     
-                    // Mostra/nascondi i campi di input in base alla dimensione
+                    // Aggiorna l'area di testo in base alla dimensione
                     if (currentSize === 'small') {
-                        multiLineInput.style.display = 'none';
-                        
-                        // Ripristina il contenuto dell'anteprima per etichetta piccola
-                        labelPreview.innerHTML = `
-                            <div class="label-content">
-                                <div class="label-text" id="labelText">${childNameInput.value || 'Nome esempio'}</div>
-                            </div>
-                        `;
-                        
-                        // Reimposta il riferimento all'elemento del testo
-                        labelText = document.getElementById('labelText');
+                        // Per etichette piccole, usa textarea a riga singola
+                        editableLabel.placeholder = "Scrivi qui il nome";
+                        editableLabel.rows = 1;
                     } else {
-                        multiLineInput.style.display = 'block';
-                        
-                        // Ripristina il contenuto dell'anteprima per etichetta grande
-                        const lines = [
-                            line1Input.value || 'Riga 1',
-                            line2Input.value,
-                            line3Input.value,
-                            line4Input.value
-                        ].filter(line => line && line.trim() !== '');
-                        
-                        let html = '';
-                        lines.forEach(line => {
-                            html += `<div class="line">${line}</div>`;
-                        });
-                        
-                        labelPreview.innerHTML = `
-                            <div class="multi-line-label">
-                                ${html || '<div class="line">Riga 1</div>'}
-                            </div>
-                        `;
+                        // Per etichette grandi, usa textarea a più righe
+                        editableLabel.placeholder = "Scrivi qui il testo";
+                        editableLabel.rows = 4;
                     }
                     
-                    // Riattiva l'aggiustamento automatico
-                    isAutoAdjusting = true;
+                    // Aggiorna l'indicatore di lunghezza
+                    updateTextLengthIndicator();
+                    
+                    // Reset dell'altezza della textarea
+                    editableLabel.style.height = 'auto';
+                    editableLabel.style.height = (editableLabel.scrollHeight) + 'px';
                 }
             }
             
-            // Funzione per adattare la dimensione del testo - MIGLIORATA
+            // Funzione per adattare la dimensione del testo
             function adjustTextSize() {
-                if (currentSize === 'small' && labelText) {
-                    const text = labelText;
+                if (editableLabel) {
                     const container = labelPreview;
-                    const containerWidth = container.offsetWidth - 10; // margine
+                    const containerWidth = container.offsetWidth - 20; // margine
                     
                     // Imposta la dimensione del font iniziale
-                    text.style.fontSize = `${currentFontSize}px`;
+                    editableLabel.style.fontSize = `${currentFontSize}px`;
                     
                     // Misura la larghezza del testo
-                    const textWidth = text.scrollWidth;
+                    const textWidth = editableLabel.scrollWidth;
                     
                     // Se il testo è più largo del contenitore, riduci gradualmente la dimensione
                     if (textWidth > containerWidth) {
                         let fontSize = currentFontSize;
                         
                         // Riduci gradualmente finché il testo non entra
-                        while (text.scrollWidth > containerWidth && fontSize > 10) {
+                        while (editableLabel.scrollWidth > containerWidth && fontSize > 10) {
                             fontSize -= 0.5;
-                            text.style.fontSize = `${fontSize}px`;
+                            editableLabel.style.fontSize = `${fontSize}px`;
                         }
                     } else {
                         // Se c'è spazio, aumenta gradualmente la dimensione fino al massimo consentito
-                        let fontSize = parseFloat(text.style.fontSize);
+                        let fontSize = parseFloat(editableLabel.style.fontSize);
                         
-                        while (text.scrollWidth <= containerWidth && fontSize < currentFontSize) {
+                        while (editableLabel.scrollWidth <= containerWidth && fontSize < currentFontSize) {
                             fontSize += 0.5;
-                            text.style.fontSize = `${fontSize}px`;
+                            editableLabel.style.fontSize = `${fontSize}px`;
                             
                             // Se supera, torna indietro di un passo
-                            if (text.scrollWidth > containerWidth) {
+                            if (editableLabel.scrollWidth > containerWidth) {
                                 fontSize -= 0.5;
-                                text.style.fontSize = `${fontSize}px`;
+                                editableLabel.style.fontSize = `${fontSize}px`;
                                 break;
                             }
                         }
@@ -886,66 +967,16 @@
             
             // Funzione per aggiornare l'anteprima
             function updatePreview() {
-                // Aggiorna il testo
-                if (currentSize === 'small') {
-                    const name = childNameInput.value || 'Nome esempio';
-                    if (labelText) {
-                        labelText.textContent = name;
-                        
-                        // Aggiorna il font
-                        const fontValue = fontSelect.value;
-                        labelText.style.fontFamily = fontValue.split(';')[0];
-                        labelText.style.fontStyle = fontSelect.value.includes('italic') ? 'italic' : 'normal';
-                        labelText.style.fontSize = `${currentFontSize}px`;
-                        
-                        // Aggiorna il colore del testo
-                        const selectedTextColor = document.querySelector('.color-option[data-text-color].active');
-                        if (selectedTextColor) {
-                            labelText.style.color = selectedTextColor.getAttribute('data-text-color');
-                        }
-                        
-                        // Adatta automaticamente la dimensione del testo
-                        if (isAutoAdjusting) {
-                            adjustTextSize();
-                        }
-                    }
-                } else {
-                    // Per l'etichetta grande, crea il contenuto multilinea
-                    let lines = [
-                        line1Input.value || 'Riga 1',
-                        line2Input.value,
-                        line3Input.value,
-                        line4Input.value
-                    ].filter(line => line && line.trim() !== '');
-                    
-                    if (lines.length === 0) lines = ['Riga 1'];
-                    
-                    // Crea il contenuto HTML per più righe
-                    let html = '';
-                    lines.forEach(line => {
-                        html += `<div class="line">${line}</div>`;
-                    });
-                    
-                    // Sostituisci il contenuto
-                    labelPreview.innerHTML = `
-                        <div class="multi-line-label">
-                            ${html}
-                        </div>
-                    `;
-                    
-                    // Applica lo stile a tutte le righe
-                    const lineElements = labelPreview.querySelectorAll('.line');
-                    lineElements.forEach(line => {
-                        line.style.fontSize = `${currentFontSize}px`;
-                        line.style.fontFamily = fontSelect.value.split(';')[0];
-                        line.style.fontStyle = fontSelect.value.includes('italic') ? 'italic' : 'normal';
-                        
-                        // Aggiorna il colore del testo
-                        const selectedTextColor = document.querySelector('.color-option[data-text-color].active');
-                        if (selectedTextColor) {
-                            line.style.color = selectedTextColor.getAttribute('data-text-color');
-                        }
-                    });
+                // Aggiorna il font
+                const fontValue = fontSelect.value;
+                editableLabel.style.fontFamily = fontValue.split(';')[0];
+                editableLabel.style.fontStyle = fontSelect.value.includes('italic') ? 'italic' : 'normal';
+                editableLabel.style.fontSize = `${currentFontSize}px`;
+                
+                // Aggiorna il colore del testo
+                const selectedTextColor = document.querySelector('.color-option[data-text-color].active');
+                if (selectedTextColor) {
+                    editableLabel.style.color = selectedTextColor.getAttribute('data-text-color');
                 }
                 
                 // Aggiorna il colore di sfondo
@@ -953,25 +984,67 @@
                 if (selectedColor) {
                     labelPreview.style.backgroundColor = selectedColor.getAttribute('data-color');
                 }
+                
+                // Adatta automaticamente la dimensione del testo
+                if (isAutoAdjusting) {
+                    adjustTextSize();
+                }
+                
+                // Centra il testo verticalmente
+                centerTextVertically();
+            }
+            
+            // Funzione per centrare il testo verticalmente
+            function centerTextVertically() {
+                const container = document.querySelector('.editable-label-container');
+                const textarea = editableLabel;
+                
+                // Reset dell'altezza della textarea
+                textarea.style.height = 'auto';
+                
+                // Calcola l'altezza del contenitore e del testo
+                const containerHeight = container.offsetHeight;
+                const textHeight = textarea.scrollHeight;
+                
+                // Se il testo è più piccolo del contenitore, centra verticalmente
+                if (textHeight < containerHeight) {
+                    const padding = (containerHeight - textHeight) / 2;
+                    textarea.style.paddingTop = `${padding}px`;
+                    textarea.style.paddingBottom = `${padding}px`;
+                } else {
+                    textarea.style.paddingTop = '0';
+                    textarea.style.paddingBottom = '0';
+                }
+                
+                // Imposta l'altezza finale
+                textarea.style.height = textarea.scrollHeight + 'px';
             }
             
             // Salva come PNG
             savePngBtn.addEventListener('click', function() {
+                // Nascondi il bordo e il placeholder della textarea durante la cattura
+                const originalBorder = editableLabel.style.border;
+                const originalOutline = editableLabel.style.outline;
+                editableLabel.style.border = 'none';
+                editableLabel.style.outline = 'none';
+                
                 html2canvas(labelPreview, {
                     scale: 3, // Alta risoluzione
                     backgroundColor: null // Trasparente
                 }).then(canvas => {
+                    // Ripristina lo stile della textarea
+                    editableLabel.style.border = originalBorder;
+                    editableLabel.style.outline = originalOutline;
+                    
                     const link = document.createElement('a');
-                    link.download = `etichetta-${childNameInput.value || 'nome'}.png`;
+                    link.download = `etichetta-${editableLabel.value || 'nome'}.png`;
                     link.href = canvas.toDataURL('image/png');
                     link.click();
                 });
             });
             
-            // Inizializza l'anteprima
-            isAutoAdjusting = true;
-            updateSize();
-            updatePreview();
+            // Inizializza l'applicazione
+            initApp();
         });
     </script>
 </body>
