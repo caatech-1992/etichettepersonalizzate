@@ -454,6 +454,49 @@
             margin-top: 8px;
             font-size: 0.8rem;
         }
+        
+        .name-input-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .name-input {
+            width: 100%;
+            max-width: 300px;
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .name-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(78, 122, 230, 0.2);
+        }
+        
+        .font-select-under-preview {
+            width: 100%;
+            max-width: 300px;
+            padding: 10px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        
+        .preview-controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
     </style>
 </head>
 <body>
@@ -470,15 +513,31 @@
     <div class="preview-section">
         <div class="container">
             <div class="preview-container">
+                <div class="name-input-container">
+                    <input type="text" class="name-input" id="childName" placeholder="Scrivi il nome qui" value="Marco Rossi">
+                </div>
+                
                 <div class="label-preview" id="labelPreview" style="width: 230px; height: 55px;">
                     <div class="label-content">
                         <div class="label-text" id="labelText">Marco Rossi</div>
                     </div>
                 </div>
-                <div class="font-size-controls">
-                    <button class="font-size-btn" id="fontSizeDown">-</button>
-                    <button class="font-size-btn" id="fontSizeUp">+</button>
+                
+                <div class="preview-controls">
+                    <select class="font-select-under-preview" id="fontSelect">
+                        <option value="'Laika', cursive" class="font-laika">Laika</option>
+                        <option value="'Dancing Script', cursive" class="font-dancing">Dancing Script</option>
+                        <option value="'Lobster', cursive" class="font-lobster">Lobster</option>
+                        <option value="'Galindo', cursive" class="font-galindo">Galindo</option>
+                        <option value="'Quicksand', sans-serif" class="font-quicksand">Quicksand</option>
+                    </select>
+                    
+                    <div class="font-size-controls">
+                        <button class="font-size-btn" id="fontSizeDown">-</button>
+                        <button class="font-size-btn" id="fontSizeUp">+</button>
+                    </div>
                 </div>
+                
                 <div class="size-info">
                     <p id="sizeInfo">Dimensioni reali: 46×11 mm (scala 5:1)</p>
                     <p id="quantityInfo">Quantità: 84 etichette per confezione</p>
@@ -507,12 +566,6 @@
                 </div>
             </div>
             
-            <div class="form-group" id="singleLineInput">
-                <label for="childName">Nome da stampare</label>
-                <input type="text" id="childName" placeholder="Inserisci il nome del bambino" value="Marco Rossi">
-                <p class="info-text">Inserisci il nome come vuoi che appaia sull'etichetta</p>
-            </div>
-            
             <div class="form-group" id="multiLineInput" style="display: none;">
                 <label for="line1">Testo etichetta (max 4 righe)</label>
                 <div class="text-inputs">
@@ -520,38 +573,6 @@
                     <input type="text" id="line2" class="text-input" placeholder="Riga 2 (opzionale)">
                     <input type="text" id="line3" class="text-input" placeholder="Riga 3 (opzionale)">
                     <input type="text" id="line4" class="text-input" placeholder="Riga 4 (opzionale)">
-                </div>
-            </div>
-            
-            <div class="options-row">
-                <div class="form-group">
-                    <label for="fontSelect">Stile del carattere</label>
-                    <select id="fontSelect">
-                        <option value="'Laika', cursive" class="font-laika">Laika</option>
-                        <option value="'Dancing Script', cursive" class="font-dancing">Dancing Script</option>
-                        <option value="'Lobster', cursive" class="font-lobster">Lobster</option>
-                        <option value="'Galindo', cursive" class="font-galindo">Galindo</option>
-                        <option value="'Quicksand', sans-serif" class="font-quicksand">Quicksand</option>
-                    </select>
-                    <div class="font-warning">
-                        <i class="fas fa-exclamation-circle"></i> Nota: I font selezionati potrebbero apparire leggermente diversi dopo la stampa
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label>Materiale</label>
-                    <div class="material-options">
-                        <div class="material-option active" data-material="pvc" data-price="7.99">
-                            <h3>PVC</h3>
-                            <div class="price">€ 7,99</div>
-                            <div class="description">Resistente all'acqua</div>
-                        </div>
-                        <div class="material-option" data-material="carta" data-price="4.99">
-                            <h3>Carta</h3>
-                            <div class="price">€ 4,99</div>
-                            <div class="description">Standard</div>
-                        </div>
-                    </div>
                 </div>
             </div>
             
@@ -586,6 +607,22 @@
                         <div class="color-option" style="background-color: #831843;" data-text-color="#831843"></div>
                         <div class="color-option" style="background-color: #000000;" data-text-color="#000000"></div>
                         <div class="color-option" style="background-color: #dc2626;" data-text-color="#dc2626"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Materiale</label>
+                <div class="material-options">
+                    <div class="material-option active" data-material="pvc" data-price="7.99">
+                        <h3>PVC</h3>
+                        <div class="price">€ 7,99</div>
+                        <div class="description">Resistente all'acqua</div>
+                    </div>
+                    <div class="material-option" data-material="carta" data-price="4.99">
+                        <h3>Carta</h3>
+                        <div class="price">€ 4,99</div>
+                        <div class="description">Standard</div>
                     </div>
                 </div>
             </div>
@@ -650,7 +687,6 @@
             const textColorOptions = document.querySelectorAll('.color-option[data-text-color]');
             const materialOptions = document.querySelectorAll('.material-option');
             const sizeOptions = document.querySelectorAll('.size-option');
-            const singleLineInput = document.getElementById('singleLineInput');
             const multiLineInput = document.getElementById('multiLineInput');
             const labelPreview = document.getElementById('labelPreview');
             const sizeInfo = document.getElementById('sizeInfo');
@@ -768,7 +804,6 @@
                     
                     // Mostra/nascondi i campi di input in base alla dimensione
                     if (currentSize === 'small') {
-                        singleLineInput.style.display = 'block';
                         multiLineInput.style.display = 'none';
                         
                         // Ripristina il contenuto dell'anteprima per etichetta piccola
@@ -781,7 +816,6 @@
                         // Reimposta il riferimento all'elemento del testo
                         labelText = document.getElementById('labelText');
                     } else {
-                        singleLineInput.style.display = 'none';
                         multiLineInput.style.display = 'block';
                         
                         // Ripristina il contenuto dell'anteprima per etichetta grande
