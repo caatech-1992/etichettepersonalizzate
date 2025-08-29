@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personalizza Etichette Scolastiche</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Galindo&family=Laika&family=Lobster&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Galindo&family=Lobster&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <style>
         :root {
@@ -104,14 +104,6 @@
             position: relative;
             overflow: hidden;
             margin-bottom: 10px;
-        }
-        
-        .label-content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 100%;
         }
         
         .customization-section {
@@ -307,10 +299,6 @@
         }
         
         /* Font personalizzati */
-        .font-laika {
-            font-family: 'Laika', cursive;
-        }
-        
         .font-dancing {
             font-family: 'Dancing Script', cursive;
         }
@@ -419,6 +407,7 @@
             padding: 0;
             margin: 0;
             line-height: 1.2;
+            min-height: 20px;
         }
         
         .font-size-controls {
@@ -553,13 +542,12 @@
             <div class="preview-container">
                 <div class="label-preview" id="labelPreview" style="width: 230px; height: 55px;">
                     <div class="editable-label-container">
-                        <textarea class="editable-label" id="editableLabel" placeholder="Scrivi qui il nome" rows="1">Marco Rossi</textarea>
+                        <textarea class="editable-label" id="editableLabel" placeholder="Scrivi qui il nome" rows="1">Nome bambino/a</textarea>
                     </div>
                 </div>
                 
                 <div class="preview-controls">
                     <select class="font-select-under-preview" id="fontSelect">
-                        <option value="'Laika', cursive" class="font-laika">Laika</option>
                         <option value="'Dancing Script', cursive" class="font-dancing">Dancing Script</option>
                         <option value="'Lobster', cursive" class="font-lobster">Lobster</option>
                         <option value="'Galindo', cursive" class="font-galindo">Galindo</option>
@@ -664,14 +652,10 @@
                 <button class="btn btn-primary" id="savePng">
                     <i class="fas fa-download"></i> Salva PNG
                 </button>
-                <button class="btn whatsapp-direct" id="whatsappDirect">
-                    <i class="fab fa-whatsapp"></i> Invia via WhatsApp
-                </button>
             </div>
             
             <div class="btn-explanation">
                 <p><strong>Salva PNG</strong>: Scarica l'etichetta sul tuo dispositivo</p>
-                <p><strong>Invia via WhatsApp</strong>: Apri direttamente WhatsApp per inviare l'immagine</p>
             </div>
             
             <div class="save-contact-section">
@@ -707,7 +691,7 @@
 
     <footer>
         <div class="container">
-            <p>© 2025 CAA TECH - Etichette personalizzate - Tutti i diritti riservati</p>
+            <p>© 2023 CAA TECH - Etichette personalizzate - Tutti i diritti riservati</p>
         </div>
     </footer>
 
@@ -729,7 +713,6 @@
             const fontSizeDown = document.getElementById('fontSizeDown');
             const autoAdjustToggle = document.getElementById('autoAdjustToggle');
             const textLengthIndicator = document.getElementById('textLengthIndicator');
-            const whatsappDirectBtn = document.getElementById('whatsappDirect');
             
             // Variabili globali
             let currentFontSize = 20;
@@ -748,7 +731,7 @@
             
             // Imposta i listener per gli input di testo
             function setupTextInputListeners() {
-                // Listener per l'input del nome
+                // Listener para l'input del nome
                 editableLabel.addEventListener('input', function() {
                     updateTextLengthIndicator();
                     updatePreview();
@@ -756,6 +739,15 @@
                     // Auto-ridimensiona l'altezza della textarea
                     this.style.height = 'auto';
                     this.style.height = (this.scrollHeight) + 'px';
+                });
+                
+                // Quando la textarea perde il focus, se è vuota, ripristina il testo di esempio
+                editableLabel.addEventListener('blur', function() {
+                    if (this.value.trim() === '') {
+                        this.value = 'Nome bambino/a';
+                        updateTextLengthIndicator();
+                        updatePreview();
+                    }
                 });
             }
             
@@ -859,33 +851,6 @@
                 
                 // Messaggio di conferma
                 alert("Contatto salvato! Apri il file per aggiungere il numero alla tua rubrica.");
-            });
-            
-            // Invia direttamente via WhatsApp
-            whatsappDirectBtn.addEventListener('click', function() {
-                html2canvas(labelPreview, {
-                    scale: 3,
-                    backgroundColor: null
-                }).then(canvas => {
-                    canvas.toBlob(function(blob) {
-                        const file = new File([blob], "etichetta.png", { type: "image/png" });
-                        const url = URL.createObjectURL(file);
-                        
-                        // Crea un link temporaneo per il download
-                        const a = document.createElement('a');
-                        a.href = url;
-                        a.download = "etichetta.png";
-                        document.body.appendChild(a);
-                        a.click();
-                        document.body.removeChild(a);
-                        
-                        // Apri WhatsApp
-                        const phoneNumber = "393500487658";
-                        const message = "Ciao, vorrei ordinare queste etichette personalizzate!";
-                        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-                        window.open(whatsappUrl, '_blank');
-                    });
-                });
             });
             
             // Funzione per aggiornare le dimensioni
